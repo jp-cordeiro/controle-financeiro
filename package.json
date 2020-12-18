@@ -1,0 +1,21 @@
+{
+  "name": "controle-financeiro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --passWithNoTests --watchAll",
+    "start": "",
+    "lint": "eslint src/** test/** --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.6",
+    "sucrase": "^3.16.0",
+    "prettier": "^1.19.1"
+  }
+}
