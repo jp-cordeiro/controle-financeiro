@@ -10,3 +10,13 @@ test('list all users', async () => {
       expect(res.body[0]).toHaveProperty('name', 'Johnny Silverhand');
     });
 });
+
+test('insert user', async () => {
+  return request(app)
+    .post('/users')
+    .send({ name: 'Vincent', email: 'v@test.com' })
+    .then(res => {
+      expect(res.status).toBe(201);
+      expect(res.body.name).toBe('Vincent');
+    });
+});
