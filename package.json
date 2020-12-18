@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --passWithNoTests --watchAll",
-    "start": "",
+    "start": "nodemon src/server.js",
     "lint": "eslint src/** test/** --fix"
   },
   "keywords": [],
@@ -20,5 +20,8 @@
     "prettier": "^1.19.1",
     "sucrase": "^3.16.0",
     "supertest": "3.3.0"
+  },
+  "dependencies": {
+    "express": "4.16.4"
   }
 }
