@@ -1,6 +1,12 @@
-import express from 'express';
-import consign from 'consign';
-const app = express();
+const app = require('express')();
+const consign = require('consign');
+const knex = require('knex');
+const knexfile = require('../knexfile');
+const knexLogger = require('knex-logger');
+
+app.db = knex(knexfile);
+
+app.use(knexLogger(app.db));
 
 consign({ cwd: 'src', verbose: false })
   .include('./config/middlewares.js')
