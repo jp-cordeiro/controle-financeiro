@@ -17,7 +17,7 @@ module.exports = app => {
       return { error: `${propValidation} is a required property` };
     }
 
-    const userDb = await findAll({ email: 'v@test.com' });
+    const userDb = await findAll({ email: user.email });
     if (userDb && userDb.length) {
       return { error: 'There is already a user with that email' };
     }
