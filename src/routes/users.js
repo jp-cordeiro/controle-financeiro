@@ -9,6 +9,9 @@ module.exports = app => {
   const create = async (req, res) => {
     const user = req.body;
     const userInserted = await usersService.save(user);
+    if (userInserted.error) {
+      return res.status(400).json(userInserted);
+    }
     res.status(201).json(userInserted[0]);
   };
 

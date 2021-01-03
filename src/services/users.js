@@ -5,6 +5,9 @@ module.exports = app => {
   };
 
   const save = async user => {
+    if (!user.name) {
+      return { error: 'Name is a required property' };
+    }
     const userInserted = await app.db('users').insert(user, '*');
     return userInserted;
   };
