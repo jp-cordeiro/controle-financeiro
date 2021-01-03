@@ -48,3 +48,12 @@ test('cant insert user without password', async () => {
   expect(res.status).toBe(400);
   expect(res.body.error).toBe('Password is a required property');
 });
+
+test('cant insert duplicate user email', async () => {
+  const res = await request(app)
+    .post('/users')
+    .send({ name: 'Vincent', email: 'v@test.com', password: 'test' });
+
+  expect(res.status).toBe(400);
+  expect(res.body.error).toBe('There is already a user with that email');
+});
