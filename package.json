@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests --watchAll",
+    "test": "jest --detectOpenHandles --passWithNoTests --watchAll",
     "start": "nodemon src/server.js",
     "lint": "eslint src/** test/** --fix"
   },
