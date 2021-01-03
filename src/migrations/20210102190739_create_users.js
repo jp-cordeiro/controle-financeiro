@@ -6,7 +6,7 @@ exports.up = function(knex) {
       .string('email')
       .notNull()
       .unique();
-    table.string('senha').notNull();
+    table.string('password').notNull();
   });
 };
 
