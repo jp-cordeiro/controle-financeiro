@@ -1,10 +1,10 @@
 module.exports = {
-  async userValidation(user, requiredProps) {
+  async propsValidation(objToValidation, requiredProps) {
     let invalidProp = null;
-    const userProps = Object.keys(user);
+    const objProps = Object.keys(objToValidation);
 
     const validation = requiredProps.every(reqProp => {
-      if (!userProps.includes(reqProp)) {
+      if (!objProps.includes(reqProp)) {
         invalidProp = reqProp.charAt(0).toUpperCase() + reqProp.slice(1);
         return false;
       }

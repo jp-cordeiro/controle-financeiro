@@ -9,7 +9,7 @@ module.exports = app => {
   };
 
   const save = async user => {
-    const propValidation = await utils.userValidation(user, requiredProps);
+    const propValidation = await utils.propsValidation(user, requiredProps);
     if (propValidation) {
       return { error: `${propValidation} is a required property` };
     }
