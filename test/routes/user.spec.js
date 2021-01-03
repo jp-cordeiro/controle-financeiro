@@ -25,10 +25,26 @@ test('list all users', async () => {
   expect(res.body[0]).toHaveProperty('email', 'v@test.com');
 });
 
-test('cant insert user wthout name', async () => {
+test('cant insert user without name', async () => {
   const res = await request(app)
     .post('/users')
     .send({ email: 'v@test.com', password: 'test' });
   expect(res.status).toBe(400);
   expect(res.body.error).toBe('Name is a required property');
+});
+
+test('cant insert user without email', async () => {
+  const res = await request(app)
+    .post('/users')
+    .send({ name: 'Vincent', password: 'test' });
+  expect(res.status).toBe(400);
+  expect(res.body.error).toBe('Email is a required property');
+});
+
+test('cant insert user without password', async () => {
+  const res = await request(app)
+    .post('/users')
+    .send({ name: 'Vincent', email: 'v@test.com' });
+  expect(res.status).toBe(400);
+  expect(res.body.error).toBe('Password is a required property');
 });
