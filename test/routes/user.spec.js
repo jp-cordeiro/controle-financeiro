@@ -2,7 +2,7 @@ import request from 'supertest';
 import app from '../../src/app';
 
 async function truncateUsers() {
-  await app.db('users').truncate();
+  await app.db.raw('truncate table users cascade');
 }
 
 beforeAll(async () => {
