@@ -65,3 +65,11 @@ test('delete an account by id', async () => {
   expect(resNotUser.status).toBe(204);
   expect(resNotUser.body).toEqual({});
 });
+
+test('cant insert account without name', async () => {
+  const res = await request(app)
+    .post(MAIN_ROUTE)
+    .send({ user_id: user.id });
+  expect(res.status).toBe(400);
+  expect(res.body.error).toBe('Name is a required property');
+});
