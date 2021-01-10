@@ -41,7 +41,7 @@ test('returns account by account id', async () => {
 });
 
 test('alter an account by id', async () => {
-  const accountToUpdate = { id: 1, name: 'Acc altered', user_id: 1 };
+  const accountToUpdate = { id: 1, name: 'Acc altered', user_id: user.id };
   const res = await request(app)
     .put(`${MAIN_ROUTE}/1`)
     .send(accountToUpdate);
@@ -49,4 +49,19 @@ test('alter an account by id', async () => {
 
   expect(res.status).toBe(201);
   expect(accountAltered.body).toEqual(accountToUpdate);
+});
+
+test('delete an account by id', async () => {
+  const resUser = await request(app).get(`${MAIN_ROUTE}/1`);
+
+  expect(resUser.status).toBe(200);
+  expect(resUser.body.id).toBe(1);
+
+  const res = await request(app).delete(`${MAIN_ROUTE}/1`);
+  expect(res.status).toBe(204);
+  expect(res.body).toEqual({});
+
+  const resNotUser = await request(app).get(`${MAIN_ROUTE}/1`);
+  expect(resNotUser.status).toBe(204);
+  expect(resNotUser.body).toEqual({});
 });

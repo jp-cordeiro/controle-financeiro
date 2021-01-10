@@ -25,8 +25,18 @@ module.exports = app => {
 
   const findById = async (req, res) => {
     const account = await app.services.accounts.findAll({ id: req.params.id });
+    if (!account[0]) {
+      return res.status(204).json(account[0]);
+    }
     return res.status(200).json(account[0]);
   };
 
-  return { create, update, findAll, findById };
+  const deleteById = async (req, res) => {
+    const account = await app.services.accounts.deleteById({
+      id: req.params.id,
+    });
+    return res.status(204).json(account[0]);
+  };
+
+  return { create, update, findAll, findById, deleteById };
 };

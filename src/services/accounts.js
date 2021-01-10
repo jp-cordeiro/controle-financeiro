@@ -30,5 +30,10 @@ module.exports = app => {
     return accounts;
   };
 
-  return { save, findAll };
+  const deleteById = async(filter = {}) => {
+    const account = await app.db('accounts').where(filter).delete();
+    return account;
+  }
+
+  return { save, findAll, deleteById };
 };
