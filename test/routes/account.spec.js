@@ -73,3 +73,11 @@ test('cant insert account without name', async () => {
   expect(res.status).toBe(400);
   expect(res.body.error).toBe('Name is a required property');
 });
+
+test('cant insert account without user_id', async () => {
+  const res = await request(app)
+    .post(MAIN_ROUTE)
+    .send({ name: 'Acc 2' });
+  expect(res.status).toBe(400);
+  expect(res.body.error).toBe('User_id is a required property');
+});
