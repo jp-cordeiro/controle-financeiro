@@ -6,9 +6,16 @@ module.exports = app => {
   };
 
   const findAll = async (req, res) => {
-    const accounts = await app.services.accounts.findAll();
+    const params = req.params ? req.params : {};
+    const accounts = await app.services.accounts.findAll(params);
     return res.status(200).json(accounts);
   };
 
-  return { create, findAll };
+  const findById = async (req, res) => {
+    const account = await app.services.accounts.findAll({ id: req.params.id });
+    console.log(account);
+    return res.status(200).json(account[0]);
+  };
+
+  return { create, findAll, findById };
 };

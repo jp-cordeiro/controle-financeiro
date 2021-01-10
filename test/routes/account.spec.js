@@ -5,7 +5,8 @@ const MAIN_ROUTE = '/accounts';
 let user;
 
 beforeAll(async () => {
-  await app.db.raw('truncate table users cascade');
+  await app.db.raw('TRUNCATE TABLE users RESTART IDENTITY CASCADE');
+
   const userInserted = await app.services.users.save({
     name: 'Vincent',
     email: 'v@test.com',
@@ -29,4 +30,12 @@ test('list all counts', async () => {
 
   expect(res.status).toBe(200);
   expect(res.body.length).toBe(1);
+});
+
+test('returns account by account id', async () => {
+  const res = await request(app).get(`${MAIN_ROUTE}/1`);
+
+  expect(res.status).toBe(200);
+  expect(res.body.id).toBe(1);
+  expect(res.body.name).toBe('Acc 1');
 });

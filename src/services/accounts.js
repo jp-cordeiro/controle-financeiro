@@ -15,8 +15,11 @@ module.exports = app => {
     return accountInserted;
   };
 
-  const findAll = async account => {
-    const accounts = await app.db('accounts');
+  const findAll = async (filter = {}) => {
+    const accounts = await app
+      .db('accounts')
+      .where({})
+      .select();
     return accounts;
   };
 
