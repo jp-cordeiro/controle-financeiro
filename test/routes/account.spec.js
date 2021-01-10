@@ -39,3 +39,14 @@ test('returns account by account id', async () => {
   expect(res.body.id).toBe(1);
   expect(res.body.name).toBe('Acc 1');
 });
+
+test('alter an account by id', async () => {
+  const accountToUpdate = { id: 1, name: 'Acc altered', user_id: 1 };
+  const res = await request(app)
+    .put(`${MAIN_ROUTE}/1`)
+    .send(accountToUpdate);
+  const accountAltered = await request(app).get(`${MAIN_ROUTE}/1`);
+
+  expect(res.status).toBe(201);
+  expect(accountAltered.body).toEqual(accountToUpdate);
+});
